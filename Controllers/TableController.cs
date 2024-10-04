@@ -24,7 +24,7 @@ namespace Resturant.Controllers
             return Ok(tables);
         }
 
-        [HttpGet("GetTableById")]
+        [HttpGet("GetTableById/{id}")]
         public async Task<IActionResult> GetTableById(int id)
         {
             var table = await _tableServices.GetTableByIdAsync(id);
@@ -39,14 +39,14 @@ namespace Resturant.Controllers
             return CreatedAtAction(nameof(GetTableById), new { id = table.TableId }, table);
         }
 
-        [HttpPut("UpdateTable")]
+        [HttpPut("UpdateTable/{id}")]
         public async Task<IActionResult> UpdateTable(int id, [FromBody] TableDTO table)
         {
             await _tableServices.UpdateTableAsync(table, id);
             return NoContent();
         }
 
-        [HttpDelete("DeleteTable")]
+        [HttpDelete("DeleteTable/{id}")]
         public async Task<IActionResult> DeleteTable(int id)
         {
             await _tableServices.DeleteTableAsync(id);

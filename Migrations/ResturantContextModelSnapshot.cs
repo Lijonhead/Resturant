@@ -83,6 +83,10 @@ namespace Resturant.Migrations
                     b.Property<bool>("Availability")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("DishName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

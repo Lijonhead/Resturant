@@ -23,7 +23,7 @@ namespace Resturant.Controllers
             return Ok(menus);
         }
 
-        [HttpGet("GetMenuById")]
+        [HttpGet("GetMenuById/{id}")]
         public async Task<IActionResult> GetMenuById(int id)
         {
             var menu = await _menuServices.GetMenuByIdAsync(id);
@@ -38,14 +38,14 @@ namespace Resturant.Controllers
             return CreatedAtAction(nameof(GetMenuById), new { id = menu.MenuId }, menu);
         }
 
-        [HttpPut("UpdateMenu")]
+        [HttpPut("UpdateMenu/{id}")]
         public async Task<IActionResult> UpdateMenu(int id, [FromBody] MenuDTO menu)
         {
             await _menuServices.UpdateMenuAsync(menu, id);
             return NoContent();
         }
 
-        [HttpDelete("DeleteMenu")]
+        [HttpDelete("DeleteMenu/{id}")]
         public async Task<IActionResult> DeleteMenu(int id)
         {
             await _menuServices.DeleteMenuAsync(id);

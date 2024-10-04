@@ -17,6 +17,7 @@ namespace Resturant.Services
             var newMenu = new Menu
             {
                 DishName = menu.DishName,
+                Description = menu.Description,
                 Price = menu.Price,
                 Availability = menu.Availability
             };
@@ -35,6 +36,7 @@ namespace Resturant.Services
             {
                 MenuId = x.Id,
                 DishName=x.DishName,
+                Description=x.Description,
                 Price=x.Price,
                 Availability=x.Availability
             }).ToList();
@@ -51,6 +53,7 @@ namespace Resturant.Services
             {
                 MenuId = menuGot.Id,
                 DishName = menuGot.DishName,
+                Description = menuGot.Description,
                 Price = menuGot.Price,
                 Availability = menuGot.Availability
             };
@@ -60,6 +63,7 @@ namespace Resturant.Services
         {
             var updateMenu = await _menuRepository.GetMenuByIdAsync(menuId);
             updateMenu.DishName = menu.DishName;
+            updateMenu.Description = menu.Description;
             updateMenu.Price = menu.Price;
             updateMenu.Availability = menu.Availability;
             await _menuRepository.UpdateMenuAsync(updateMenu);

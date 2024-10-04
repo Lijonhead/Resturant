@@ -23,7 +23,7 @@ namespace Resturant.Controllers
             return Ok(customers);
         }
 
-        [HttpGet("GetCustomerById")]
+        [HttpGet("GetCustomerById/{id}")]
         public async Task<IActionResult> GetCustomerById(int id)
         {
             var customer = await _customerServices.GetCustomerByIdAsync(id);
@@ -34,18 +34,18 @@ namespace Resturant.Controllers
         [HttpPost("AddCustomer")]
         public async Task<IActionResult> AddCustomer([FromBody] CustomerDTO customer)
         {
-            await _customerServices.AddCustomerAsync(customer);
-            return CreatedAtAction(nameof(GetCustomerById), new { id = customer.CustomerId }, customer);
+            var createdCustomer = await _customerServices.AddCustomerAsync(customer);
+            return CreatedAtAction(nameof(GetCustomerById), new { id = createdCustomer.CustomerId }, createdCustomer);
         }
 
-        [HttpPut("UpdateCustomer")]
+        [HttpPut("UpdateCustomer/{id}")]
         public async Task<IActionResult> UpdateCustomer(int id, [FromBody] CustomerDTO customer)
         {
             await _customerServices.UpdateCustomerAsync(customer, id);
             return NoContent();
         }
 
-        [HttpDelete("DeleteCustomer")]
+        [HttpDelete("DeleteCustomer/{id}")]
         public async Task<IActionResult> DeleteCustomer(int id)
         {
             await _customerServices.DeleteCustomerAsync(id);

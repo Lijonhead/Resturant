@@ -24,7 +24,7 @@ namespace Resturant.Controllers
             return Ok(bookings);
         }
 
-        [HttpGet("GetBookingById")]
+        [HttpGet("GetBookingById/{id}")]
         public async Task<IActionResult> GetBookingById(int id)
         {
             var booking = await _bookingServices.GetBookingByIdAsync(id);
@@ -39,14 +39,14 @@ namespace Resturant.Controllers
             return CreatedAtAction(nameof(GetBookingById), new { id = booking.BookingId }, booking);
         }
 
-        [HttpPut("UpdateBooking")]
+        [HttpPut("UpdateBooking/{id}")]
         public async Task<IActionResult> UpdateBooking(int id, [FromBody] BookingDTO booking)
         {
             await _bookingServices.UpdateBookingAsync(booking, id);
             return NoContent();
         }
 
-        [HttpDelete("DeleteBooking")]
+        [HttpDelete("DeleteBooking/{id}")]
         public async Task<IActionResult> DeleteBooking(int id)
         {
             await _bookingServices.DeleteBookingAsync(id);

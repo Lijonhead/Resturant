@@ -12,7 +12,7 @@ using Resturant.Data;
 namespace Resturant.Migrations
 {
     [DbContext(typeof(ResturantContext))]
-    [Migration("20240902165052_Init")]
+    [Migration("20240930170124_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -85,6 +85,10 @@ namespace Resturant.Migrations
 
                     b.Property<bool>("Availability")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DishName")
                         .IsRequired()

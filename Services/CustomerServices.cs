@@ -12,7 +12,7 @@ namespace Resturant.Services
         {
             _customerRepository = customerRepository;
         }
-        public async Task AddCustomerAsync(CustomerDTO customer)
+        public async Task<CustomerDTO> AddCustomerAsync(CustomerDTO customer)
         {
             var newCustomer = new Customer
             {
@@ -20,6 +20,16 @@ namespace Resturant.Services
                 Email = customer.Email
             };
             await _customerRepository.AddCustomerAsync(newCustomer);
+
+            return new CustomerDTO
+            {
+                CustomerId = newCustomer.Id, 
+                Name = newCustomer.Name,
+                Email = newCustomer.Email
+                
+            };
+            
+
         }
 
         public async Task DeleteCustomerAsync(int customerId)
